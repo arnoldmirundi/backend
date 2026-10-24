@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Query } from '@nestjs/common';
 import { ClubsService } from './clubs.service.js';
 import { CreateClubDto } from './dto/create-club.dto.js';
 import { UpdateClubDto } from './dto/update-club.dto.js';
@@ -13,8 +13,8 @@ export class ClubsController {
   }
 
   @Get()
-  findAll() {
-    return this.clubsService.findAll();
+  findAll(@Query('name') name?:string) {
+    return this.clubsService.findAll({name});
   }
 
   @Get(':id')

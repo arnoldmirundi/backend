@@ -2,7 +2,7 @@ import { Injectable, ConflictException, NotFoundException } from '@nestjs/common
 import { CreateClubDto } from './dto/create-club.dto.js';
 import { UpdateClubDto } from './dto/update-club.dto.js';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ILike, Repository } from 'typeorm';
+import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 import { Club } from './entities/club.entity.js';
 
 @Injectable()
@@ -24,8 +24,10 @@ export class ClubsService {
   return this.clubRepository.save(club)
   }
 
-  findAll() {
-  return this.clubRepository.find({order:{name:'ASC'}});
+  findAll(filters: {name?: string}={}) {
+    const where: FindOptionsWhere<Club>={};
+    if (filters.name) where.name = ILike(`%${filters.name.trim()}`);
+  return this.clubRepository.find({where, order:{name:'ASC'}});
   }
 
   async findOne(id: number) {

@@ -8,6 +8,10 @@ export class Club {
     id:number
     @Column()
     name:string
+    @Column({type:'varchar', nullable:true})
+    logo: string | null
+
+
     @OneToMany(()=> Team, (team)=> team.club)
     teams: Relation<Team[]>;
 }

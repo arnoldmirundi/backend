@@ -21,7 +21,7 @@ export class TeamsService {
     return label?.trim();
   }
 
-  private async assertUniqueTeam(clubId:number, categoryId:number, label?: string, excludeId?: number){
+  private async assertUniqueTeam(clubId:number, categoryId:number, label?: string | null, excludeId?: number){
     const teamExists = await this.teamRepository.findOne({where:{club:{id:clubId},category:{id:categoryId},label:label ? ILike(label): IsNull()}});
     if(teamExists && teamExists.id !== excludeId){
       throw new ConflictException('This team already exists')

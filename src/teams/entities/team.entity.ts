@@ -7,8 +7,8 @@ export class Team {
     @PrimaryGeneratedColumn()
     id:number;
 
-    @Column({nullable:true})
-    label: string;
+    @Column({type: 'varchar', nullable:true})
+    label: string | null;
 
     @ManyToOne(()=>Club, (club)=> club.teams)
     @JoinColumn({name:'club_id'})
