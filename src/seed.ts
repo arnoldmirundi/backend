@@ -6,8 +6,8 @@ import { Club } from './clubs/entities/club.entity.js';
 import { Category } from './categories/entities/category.entity.js';
 import { Team } from './teams/entities/team.entity.js';
 
-const BOYS = 'boys';
-const GIRLS = 'girls';
+const BOYS = 'Boys';
+const GIRLS = 'Girls';
 
 const BOYS_AGE_GROUPS = ['U6', 'U8', 'U10', 'U12', 'U15', 'U17'];
 

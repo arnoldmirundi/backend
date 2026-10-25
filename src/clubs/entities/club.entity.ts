@@ -10,6 +10,13 @@ export class Club {
     name:string
     @Column({type:'varchar', nullable:true})
     logo: string | null
+    @Column({type:'varchar', nullable:true})
+    country: string | null;
+    @Column({type:'varchar', nullable:true})
+    kitPrimary: string | null;
+    @Column({type:'varchar', nullable:true})
+    kitSecondary: string | null;
+
 
 
     @OneToMany(()=> Team, (team)=> team.club)

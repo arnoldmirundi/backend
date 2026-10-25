@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Query 
 import { ClubsService } from './clubs.service.js';
 import { CreateClubDto } from './dto/create-club.dto.js';
 import { UpdateClubDto } from './dto/update-club.dto.js';
+import { Public } from '../guards/api-key/public.decorator.js';
 
 @Controller('clubs')
 export class ClubsController {
@@ -12,11 +13,13 @@ export class ClubsController {
     return this.clubsService.create(dto);
   }
 
+  @Public()
   @Get()
   findAll(@Query('name') name?:string) {
     return this.clubsService.findAll({name});
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.clubsService.findOne(id);

@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, HttpCo
 import { CategoriesService } from './categories.service.js';
 import { CreateCategoryDto } from './dto/create-category.dto.js';
 import { UpdateCategoryDto } from './dto/update-category.dto.js';
+import { Public } from '../guards/api-key/public.decorator.js';
 
 @Controller('categories')
 export class CategoriesController {
@@ -11,12 +12,13 @@ export class CategoriesController {
   create(@Body() dto: CreateCategoryDto) {
     return this.categoriesService.create(dto);
   }
-
+  @Public()
   @Get()
   findAll() {
     return this.categoriesService.findAll();
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.categoriesService.findOne(id);

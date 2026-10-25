@@ -16,6 +16,14 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+  mailpit:
+    image: axllent/mailpit
+    container_name: iteen-mailpit
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
 
 volumes:
   pgdata:
+

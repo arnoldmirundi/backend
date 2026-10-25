@@ -2,10 +2,10 @@ import { IsInt,IsString,IsOptional } from "class-validator";
 
 export class CreateTeamDto {
     @IsInt()
-    clubId:string
+    clubId:number
     
     @IsInt()
-    categoryId:string
+    categoryId:number
 
     @IsString()
     @IsOptional()
